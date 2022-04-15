@@ -29,7 +29,17 @@ public class NoteObject : MonoBehaviour
         if(Input.GetKeyDown(keyToPress)){
             if(canBePressed){
                 gameObject.SetActive(false);
-                GameManager.instance.NoteHit();
+                var distance = Mathf.Abs(1 - transform.position.y);
+
+                if (distance >= 0.5f){
+                    GameManager.instance.BadHit();
+                } else if (distance >= 0.3f){
+                    GameManager.instance.GoodHit();
+                } else if (distance >= 0.08f){
+                    GameManager.instance.GreatHit();
+                } else{
+                    GameManager.instance.PerfectHit();
+                }
 
             }
         }

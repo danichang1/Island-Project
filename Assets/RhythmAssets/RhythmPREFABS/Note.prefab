@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 0
+  hitEffect: {fileID: 4827927170530995578, guid: 44c813eba4d21fc48b0a434e431a68b2, type: 3}
 --- !u!54 &7473053671252703642
 Rigidbody:
   m_ObjectHideFlags: 0

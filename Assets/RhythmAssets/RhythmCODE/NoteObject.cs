@@ -9,7 +9,7 @@ public class NoteObject : MonoBehaviour
 
     public KeyCode keyToPress;
 
-
+    public GameObject hitEffect;
 
     void Start()
     {
@@ -29,13 +29,14 @@ public class NoteObject : MonoBehaviour
         if(Input.GetKeyDown(keyToPress)){
             if(canBePressed){
                 gameObject.SetActive(false);
+                Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
                 var distance = Mathf.Abs(1 - transform.position.y);
 
                 if (distance >= 0.5f){
                     GameManager.instance.BadHit();
                 } else if (distance >= 0.3f){
                     GameManager.instance.GoodHit();
-                } else if (distance >= 0.08f){
+                } else if (distance >= 0.12f){
                     GameManager.instance.GreatHit();
                 } else{
                     GameManager.instance.PerfectHit();

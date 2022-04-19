@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public void ScoreSet(){
         currentScore = Mathf.Max(0f, currentScore);
         currentScore = Mathf.Min(currentScore, 700);
-        comboText.text = "Combo: " + currentCombo;
+        comboText.text = "" + currentCombo;
 
     }
 
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     public void GoodHit(){
         Debug.Log("go");
         currentScore += scoreGood;
-        currentCombo = 0;
+        currentCombo++;
         ScoreSet();
     }
 

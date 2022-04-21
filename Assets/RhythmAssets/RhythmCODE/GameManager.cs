@@ -21,9 +21,37 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI comboText;
 
+    public TextAsset beatmapFile;
+    public GameObject note;
+    public GameObject parent;
+
     void Start()
     {
         instance = this;
+
+        //makes beatmap
+        string text = beatmapFile.text;
+        var lines = text.Split('\n');
+        for(int i = 0; i < lines.Length; i++){
+            var currentLine = lines[lines.Length - (i + 1)];
+            for(int u = 0; u < 4; u++){
+                var why = "1";
+                if (currentLine[u] == why[0]){
+                    float xValue = 0f;
+                    if (u == 0){
+                        xValue = -7.8f;
+                    } else if (u == 1){
+                        xValue = -5.8f;
+                    } else if (u == 2){
+                        xValue = -3.8f;
+                    } else{
+                        xValue = -1.8f;
+                    }
+                    var currentNote = Instantiate(note, new Vector3(xValue, i + 9, -0.1f), note.transform.rotation);
+                    currentNote.transform.parent = parent.transform;
+                }
+            }
+        }
     }
 
     void Update()

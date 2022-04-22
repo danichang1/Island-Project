@@ -6,12 +6,20 @@ public class BoardMatch : MonoBehaviour{
 
     public int width;
     public int height;
+
     public GameObject TilePrefab;
+
     private float[,] allTiles;
+
+    public GameObject[,] AllRocks;
+
+    public GameObject[] Rocks;
 
     void Start(){
 
         allTiles = new float[width,height];
+
+        AllRocks = new GameObject[width,height];
 
         Setup();
         
@@ -23,7 +31,18 @@ public class BoardMatch : MonoBehaviour{
 
                 Vector2 TempPos = new Vector2(i, j);
 
-                Instantiate(TilePrefab, TempPos, Quaternion.identity);
+                GameObject BGTile = Instantiate(TilePrefab, TempPos, Quaternion.identity) as GameObject;
+
+                BGTile.transform.parent = this.transform;
+                BGTile.name = "(" + i + "," + j + ")";
+
+                int RockUse = Random.Range(0, Rocks.Length);
+
+                GameObject Rock = Instantiate(Rocks[RockUse], TempPos, Quaternion.identity);
+
+                Rock.transform.parent = this.transform;
+                Rock.name = "(" + i + "," + j + ")";
+                AllRocks[i,j] = Rock;
             }
         }
         

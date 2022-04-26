@@ -98,7 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 0
-  hitEffect: {fileID: 4827927170530995578, guid: 44c813eba4d21fc48b0a434e431a68b2, type: 3}
+  perfectEffect: {fileID: 5148024515965496851, guid: bb1f89dbbb5abf342a1883f7d6cee465, type: 3}
+  greatEffect: {fileID: 6223738804041440606, guid: 6e756fb756eabf746b098285804d38d8, type: 3}
+  goodEffect: {fileID: 7881964452828664943, guid: 2ebd05e0f0fd8f443b3ddbd938ee9e8d, type: 3}
+  badEffect: {fileID: 7371137111742578135, guid: 1cd6195c360d7064295ad07c3c5425dc, type: 3}
+  missEffect: {fileID: 2599879117284125934, guid: 76a593ee8c15cca43964b8ea2958ceda, type: 3}
 --- !u!54 &7473053671252703642
 Rigidbody:
   m_ObjectHideFlags: 0

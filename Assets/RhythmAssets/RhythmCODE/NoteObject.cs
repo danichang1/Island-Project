@@ -9,7 +9,7 @@ public class NoteObject : MonoBehaviour
 
     public KeyCode keyToPress;
 
-    public GameObject hitEffect;
+    public GameObject perfectEffect, greatEffect, goodEffect, badEffect, missEffect;
 
     void Start()
     {
@@ -29,17 +29,20 @@ public class NoteObject : MonoBehaviour
         if(Input.GetKeyDown(keyToPress)){
             if(canBePressed){
                 gameObject.SetActive(false);
-                Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
                 var distance = Mathf.Abs(1 - transform.position.y);
 
-                if (distance >= 0.5f){
+                if (distance >= 0.6f){
                     GameManager.instance.BadHit();
-                } else if (distance >= 0.3f){
+                    Instantiate(badEffect, transform.position, badEffect.transform.rotation);
+                } else if (distance >= 0.4f){
                     GameManager.instance.GoodHit();
-                } else if (distance >= 0.12f){
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                } else if (distance >= 0.2f){
                     GameManager.instance.GreatHit();
+                    Instantiate(greatEffect, transform.position, greatEffect.transform.rotation);
                 } else{
                     GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
                 }
 
             }
@@ -56,6 +59,8 @@ public class NoteObject : MonoBehaviour
         if(other.tag == "Activator"){
             canBePressed = false;
             GameManager.instance.NoteMiss();
+            Vector3 missPosition = new Vector3(transform.position.x, 1f, transform.position.z);
+            Instantiate(missEffect, missPosition, missEffect.transform.rotation);
         }
     }
 }

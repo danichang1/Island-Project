@@ -15,6 +15,7 @@ public class BoardMatch : MonoBehaviour{
 
     public GameObject[] Rocks;
 
+
     void Start(){
 
         allTiles = new float[width,height];

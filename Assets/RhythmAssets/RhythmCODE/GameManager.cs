@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
     public GameObject note;
     public GameObject parent;
 
+    public int perfectCount;
+    public int greatCount;
+    public int goodCount;
+    public int badCount;
+    public int missCount;
+
     void Start()
     {
         instance = this;
@@ -74,35 +80,35 @@ public class GameManager : MonoBehaviour
     }
 
     public void PerfectHit(){
-        Debug.Log("P");
+        perfectCount++;
         currentScore += scorePerfect;
         currentCombo++;
         ScoreSet();
     }
 
     public void GreatHit(){
-        Debug.Log("gr");
+        greatCount++;
         currentScore += scoreGreat;
         currentCombo++;
         ScoreSet();
     }
 
     public void GoodHit(){
-        Debug.Log("go");
+        goodCount++;
         currentScore += scoreGood;
         currentCombo++;
         ScoreSet();
     }
 
     public void BadHit(){
-        Debug.Log("b");
+        badCount++;
         currentScore -= scoreBad;
         currentCombo = 0;
         ScoreSet();
     }
 
     public void NoteMiss(){
-        Debug.Log("m");
+        missCount++;
         currentScore -= scoreMiss;
         currentCombo = 0;
         ScoreSet();

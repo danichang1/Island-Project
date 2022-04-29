@@ -31,10 +31,10 @@ public class NoteObject : MonoBehaviour
                 gameObject.SetActive(false);
                 var distance = Mathf.Abs(1 - transform.position.y);
 
-                if (distance >= 0.6f){
+                if (distance >= 0.8f){
                     GameManager.instance.BadHit();
                     Instantiate(badEffect, transform.position, badEffect.transform.rotation);
-                } else if (distance >= 0.4f){
+                } else if (distance >= 0.5f){
                     GameManager.instance.GoodHit();
                     Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
                 } else if (distance >= 0.2f){

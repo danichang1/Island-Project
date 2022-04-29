@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int scoreBad;
     public int scoreMiss;
 
-    public TextMeshProUGUI comboText;
+    public TextMesh comboText;
 
     public TextAsset beatmapFile;
     public GameObject note;

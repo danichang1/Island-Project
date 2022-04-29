@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RockMatch : MonoBehaviour
 {
+
+    [Header("Board Variables")]
     private Vector2 FirstPos;
     private Vector2 FinalPos;
 
@@ -23,6 +25,9 @@ public class RockMatch : MonoBehaviour
 
     public bool Matched = false;
 
+    public int PreviousColumn;
+    public int PreviousRow;
+
 
 
     void Start(){
@@ -33,6 +38,9 @@ public class RockMatch : MonoBehaviour
 
         Row = TargetY;
         Column = TargetX;
+
+        PreviousColumn = Column;
+        PreviousRow = Row;
     }
 
     void Update(){
@@ -80,11 +88,25 @@ public class RockMatch : MonoBehaviour
         }
     }
 
+    public IEnumerator CheckMoveCO(){
+        yield return new WaitForSeconds(.5f);
+        if(OtherRock != null){
+            if(!Matched && !OtherRock.GetComponent<RockMatch>().Matched){
+                OtherRock.GetComponent<RockMatch>().Row = Row;
+                OtherRock.GetComponent<RockMatch>().Column = Column;
+
+                Row = PreviousRow;
+                Column = PreviousColumn;
+
+            }
+            OtherRock = null;
+        }
+    }
+
 
 
     void OnMouseDown(){
         FirstPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Debug.Log(FirstPos);
     }
 
     void OnMouseUp(){
@@ -101,13 +123,13 @@ public class RockMatch : MonoBehaviour
     }
 
     void MovePieces(){
-        if(SwipeAngle > -45 && SwipeAngle <= 45 && Column < board.width){
+        if(SwipeAngle > -45 && SwipeAngle <= 45 && Column < board.width - 1){
             //Right
             OtherRock = board.AllRocks[Column + 1, Row];
 
             OtherRock.GetComponent<RockMatch>().Column -= 1;
             Column += 1;
-        } else if(SwipeAngle > 45 && SwipeAngle <= 135 && Row < board.height){
+        } else if(SwipeAngle > 45 && SwipeAngle <= 135 && Row < board.height - 1){
             //Up
             OtherRock = board.AllRocks[Column, Row + 1];
 
@@ -126,6 +148,8 @@ public class RockMatch : MonoBehaviour
             OtherRock.GetComponent<RockMatch>().Row += 1;
             Row -= 1;
         }
+
+        StartCoroutine(CheckMoveCO());
     }
 
     void FindMatch (){

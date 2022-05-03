@@ -31,9 +31,13 @@ public class GameManager : MonoBehaviour
     public int badCount;
     public int missCount;
 
+    public GameObject startScreen;
+    
+
     void Start()
     {
         instance = this;
+        startScreen.SetActive(true);
 
         //makes beatmap
         string text = beatmapFile.text;
@@ -64,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         if(!startMusic){
             if(Input.anyKeyDown){
+                startScreen.SetActive(false);
                 startMusic = true;
                 theBS.hasStarted = true;
 

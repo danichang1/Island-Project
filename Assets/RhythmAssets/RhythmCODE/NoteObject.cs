@@ -31,18 +31,19 @@ public class NoteObject : MonoBehaviour
                 gameObject.SetActive(false);
                 var distance = Mathf.Abs(1 - transform.position.y);
 
+                var particlePos = new Vector3(transform.position.x, transform.position.y, -5);
                 if (distance >= 0.8f){
                     GameManager.instance.BadHit();
-                    Instantiate(badEffect, transform.position, badEffect.transform.rotation);
+                    Instantiate(badEffect, particlePos, badEffect.transform.rotation);
                 } else if (distance >= 0.5f){
                     GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                } else if (distance >= 0.2f){
+                    Instantiate(goodEffect, particlePos, goodEffect.transform.rotation);
+                } else if (distance >= 0.15f){
                     GameManager.instance.GreatHit();
-                    Instantiate(greatEffect, transform.position, greatEffect.transform.rotation);
+                    Instantiate(greatEffect, particlePos, greatEffect.transform.rotation);
                 } else{
                     GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                    Instantiate(perfectEffect, particlePos, perfectEffect.transform.rotation);
                 }
 
             }

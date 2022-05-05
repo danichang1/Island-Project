@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public int missCount;
 
     public GameObject startScreen;
+
+    public float beatTempo;
     
 
     void Start()

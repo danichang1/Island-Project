@@ -39,6 +39,16 @@ public class BoardMatch : MonoBehaviour{
 
                 int RockUse = Random.Range(0, Rocks.Length);
 
+                int MaxIt = 0;
+
+                while(MatchesAt(i, j, Rocks[RockUse]) && MaxIt < 100){
+                    RockUse = Random.Range(0, Rocks.Length);
+
+                    MaxIt++;
+                }
+
+                MaxIt = 0;
+
                 GameObject Rock = Instantiate(Rocks[RockUse], TempPos, Quaternion.identity);
 
                 Rock.transform.parent = this.transform;
@@ -47,5 +57,47 @@ public class BoardMatch : MonoBehaviour{
             }
         }
         
+    }
+
+    private bool MatchesAt(int Column, int Row, GameObject Piece){
+        if(Column > 1 && Row > 1){
+            if(AllRocks[Column - 1, Row].tag == Piece.tag && AllRocks[Column - 2, Row].tag == Piece.tag){
+                return true;
+            }
+
+            if(AllRocks[Column, Row - 1].tag == Piece.tag && AllRocks[Column, Row - 2].tag == Piece.tag){
+                return true;
+            }
+        } else if( Column <= 1 || Row <= 1){
+                if(Row > 1){
+                    if(AllRocks[Column, Row - 1].tag == Piece.tag && AllRocks[Column, Row - 2].tag == Piece.tag){
+                        return true;
+                    }
+                }
+
+                if(Column > 1){
+                    if(AllRocks[Column - 1, Row].tag == Piece.tag && AllRocks[Column - 2, Row].tag == Piece.tag){
+                        return true;
+                    }
+                }
+        }
+        return false;
+    }
+
+    private void DestroyMatchAt(int Column, int Row){
+        if(AllRocks[Column, Row].GetComponent<RockMatch>().Matched){
+            Destroy(AllRocks[Column, Row]);
+            AllRocks[Column, Row] = null;
+        }
+    }
+
+    public void DestroyMatch(){
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                if(AllRocks[i,j] != null){
+                    DestroyMatchAt(i,j);
+                }
+            }
+        }
     }
 }

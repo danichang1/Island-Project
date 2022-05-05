@@ -28,6 +28,8 @@ public class RockMatch : MonoBehaviour
     public int PreviousColumn;
     public int PreviousRow;
 
+    public float SwipeResist = 1f;
+
 
 
     void Start(){
@@ -88,8 +90,8 @@ public class RockMatch : MonoBehaviour
         }
     }
 
-    public IEnumerator CheckMoveCO(){
-        yield return new WaitForSeconds(.5f);
+    public IEnumerator CheckMoveCo(){
+        yield return new WaitForSeconds(.25f);
         if(OtherRock != null){
             if(!Matched && !OtherRock.GetComponent<RockMatch>().Matched){
                 OtherRock.GetComponent<RockMatch>().Row = Row;
@@ -98,7 +100,9 @@ public class RockMatch : MonoBehaviour
                 Row = PreviousRow;
                 Column = PreviousColumn;
 
-            }
+            }else{
+            board.DestroyMatch();
+        }
             OtherRock = null;
         }
     }
@@ -116,9 +120,12 @@ public class RockMatch : MonoBehaviour
     }
 
     void CalcAngle(){
-        SwipeAngle = Mathf.Atan2(FinalPos.y - FirstPos.y, FinalPos.x - FirstPos.x) * 180/Mathf.PI;
 
-        MovePieces();
+        if(Mathf.Abs(FinalPos.y - FirstPos.y) > SwipeResist || Mathf.Abs(FinalPos.x - FirstPos.x) > SwipeResist){
+             SwipeAngle = Mathf.Atan2(FinalPos.y - FirstPos.y, FinalPos.x - FirstPos.x) * 180/Mathf.PI;
+
+            MovePieces();
+        }
 
     }
 
@@ -149,7 +156,7 @@ public class RockMatch : MonoBehaviour
             Row -= 1;
         }
 
-        StartCoroutine(CheckMoveCO());
+        StartCoroutine(CheckMoveCo());
     }
 
     void FindMatch (){
@@ -157,22 +164,28 @@ public class RockMatch : MonoBehaviour
             GameObject LeftRockOne = board.AllRocks[Column - 1, Row];
             GameObject RightRockOne = board.AllRocks[Column + 1, Row];
 
-            if(LeftRockOne.tag == this.gameObject.tag && RightRockOne.tag == this.gameObject.tag){
-                LeftRockOne.GetComponent<RockMatch>().Matched = true;
-                RightRockOne.GetComponent<RockMatch>().Matched = true;
-                Matched = true;
+            if(LeftRockOne != null && RightRockOne != null){
+
+                 if(LeftRockOne.tag == this.gameObject.tag && RightRockOne.tag == this.gameObject.tag){
+                      LeftRockOne.GetComponent<RockMatch>().Matched = true;
+                     RightRockOne.GetComponent<RockMatch>().Matched = true;
+                     Matched = true;
+                }
             }
 
         }
 
         if(Row > 0 && Row < board.height - 1){
-            GameObject UpDotOne = board.AllRocks[Column, Row + 1];
-            GameObject DownDotOne = board.AllRocks[Column, Row - 1];
+            GameObject UpRockOne = board.AllRocks[Column, Row + 1];
+            GameObject DownRockOne = board.AllRocks[Column, Row - 1];
 
-            if(UpDotOne.tag == this.gameObject.tag && DownDotOne.tag == this.gameObject.tag){
-                UpDotOne.GetComponent<RockMatch>().Matched = true;
-                DownDotOne.GetComponent<RockMatch>().Matched = true;
-                Matched = true;
+            if(UpRockOne != null && DownRockOne != null){
+
+                if(UpRockOne.tag == this.gameObject.tag && DownRockOne.tag == this.gameObject.tag){
+                    UpRockOne.GetComponent<RockMatch>().Matched = true;
+                    DownRockOne.GetComponent<RockMatch>().Matched = true;
+                    Matched = true;
+                }
             }
 
         }

@@ -65,28 +65,35 @@ public class RockMatch : MonoBehaviour
             //Move to target
 
             TempPos = new Vector2(TargetX, transform.position.y);
-            transform.position = Vector2.Lerp(transform.position, TempPos, .4f);
+            transform.position = Vector2.Lerp(transform.position, TempPos, .6f);
+
+            if(board.AllRocks[Column, Row] != this.gameObject){
+                board.AllRocks[Column, Row] = this.gameObject;
+            }
 
         } else {
             //Directly set pos
 
             TempPos = new Vector2(TargetX, transform.position.y);
             transform.position = TempPos;
-            board.AllRocks[Column, Row] = this.gameObject;
+
         }
 
         if(Mathf.Abs(TargetY - transform.position.y) > .1){
             //Move to target
 
             TempPos = new Vector2(transform.position.x, TargetY);
-            transform.position = Vector2.Lerp(transform.position, TempPos, .4f);
+            transform.position = Vector2.Lerp(transform.position, TempPos, .6f);
+
+            if(board.AllRocks[Column, Row] != this.gameObject){
+                board.AllRocks[Column, Row] = this.gameObject;
+            }
 
         } else {
             //Directly set pos
 
             TempPos = new Vector2(transform.position.x, TargetY);
             transform.position = TempPos;
-            board.AllRocks[Column, Row] = this.gameObject;
         }
     }
 

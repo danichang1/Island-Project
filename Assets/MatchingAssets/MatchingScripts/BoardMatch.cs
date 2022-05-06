@@ -99,5 +99,69 @@ public class BoardMatch : MonoBehaviour{
                 }
             }
         }
+
+        StartCoroutine(DecreaseRowCO());
+    }
+
+    private IEnumerator DecreaseRowCO(){
+
+        int NullCount = 0;
+
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                if(AllRocks[i, j] == null){
+                    NullCount++;
+                }else if (NullCount > 0){
+                    AllRocks[i, j].GetComponent<RockMatch>().Row -= NullCount;
+                    AllRocks[i, j] = null;
+                }
+            }
+
+            NullCount = 0;
+        }
+
+        yield return new WaitForSeconds(.4f);
+
+        StartCoroutine(FillBoardCo());
+    }
+
+    private void RefillBoard(){
+
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height ; j++){
+                if(AllRocks[i, j] == null){
+                    Vector2 TempPos = new Vector2(i,j);
+                    int RockUse = Random.Range(0, Rocks.Length);
+                    GameObject Piece = Instantiate(Rocks[RockUse], TempPos, Quaternion.identity);
+                    AllRocks[i,j] = Piece;
+                }
+            }
+        }
+    }
+
+bool MatchesOnBoard(){
+
+            for(int i = 0; i < width; i++){
+                for(int j = 0; j < height; j++){
+                    if(AllRocks[i, j] != null){
+                        if(AllRocks[i, j].GetComponent<RockMatch>().Matched){
+                            return true;
+                        }
+                    }
+                }
+        }
+            return false;
+        }
+
+
+    private IEnumerator FillBoardCo(){
+        RefillBoard();
+
+        yield return new WaitForSeconds(.5f);
+
+        while(MatchesOnBoard()){
+            yield return new WaitForSeconds(.5f);
+            DestroyMatch();
+        }
     }
 }

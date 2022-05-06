@@ -52,6 +52,7 @@ public class NoteObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         if(other.tag == "Activator"){
+            Debug.Log(Mathf.Abs(1 - transform.position.y));
             canBePressed = true;
         }
     }

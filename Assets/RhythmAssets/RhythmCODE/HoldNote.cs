@@ -13,6 +13,8 @@ public class HoldNote : MonoBehaviour
 
     public GameObject tail;
 
+    public GameObject end;
+
     public bool beingHeld;
 
     private Vector3 stay;
@@ -23,7 +25,9 @@ public class HoldNote : MonoBehaviour
 
     void Start()
     {
-        tailLength = 2;
+        tailLength = 4;
+        var endPos = transform.position.y + tailLength;
+        end.transform.position = new Vector3(end.transform.position.x, endPos, end.transform.position.z);
         tail.transform.localScale = new Vector3(tail.transform.localScale.x, tailLength, tail.transform.localScale.z);
         beingHeld = false;
         staySet = false;
@@ -45,6 +49,7 @@ public class HoldNote : MonoBehaviour
             var newY = tail.transform.localScale.y - GameManager.instance.beatTempo/30 * Time.deltaTime;
             newY = Mathf.Max(0f, newY);
             tail.transform.localScale = new Vector3(tail.transform.localScale.x, newY, tail.transform.localScale.z);
+
         }
         if(Input.GetKeyDown(keyToPress)){
             if(canBePressed){
@@ -74,8 +79,40 @@ public class HoldNote : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(keyToPress)){
+        var howfar = Mathf.Abs(end.transform.position.y - transform.position.y);
+
+        if (howfar <= 0.2f){
+            end.GetComponent<MeshRenderer>().enabled = false;
+        }
+
+        if (end.transform.position.y - transform.position.y <= -2.30){
+            var releaseMiss = new Vector3(transform.position.x, transform.position.y, -5);
+            GameManager.instance.NoteMiss();
+            Instantiate(missEffect, releaseMiss, missEffect.transform.rotation);
             gameObject.SetActive(false);
+            end.SetActive(false);
+        }
+
+        if(Input.GetKeyUp(keyToPress)){
+            var releaseParticle = new Vector3(transform.position.x, transform.position.y, -5);
+            if (howfar >= 1.45f){
+                GameManager.instance.NoteMiss();
+                Instantiate(missEffect, releaseParticle, missEffect.transform.rotation);
+            } else if (howfar >= 0.8f){
+                GameManager.instance.BadHit();
+                Instantiate(badEffect, releaseParticle, badEffect.transform.rotation);
+            } else if (howfar >= 0.5f){
+                GameManager.instance.GoodHit();
+                Instantiate(goodEffect, releaseParticle, goodEffect.transform.rotation);
+            } else if (howfar >= 0.15f){
+                GameManager.instance.GreatHit();
+                Instantiate(greatEffect, releaseParticle, greatEffect.transform.rotation);
+            } else {
+                GameManager.instance.PerfectHit();
+                Instantiate(perfectEffect, releaseParticle, perfectEffect.transform.rotation);
+            }
+            gameObject.SetActive(false);
+            end.SetActive(false);
         }
     }
 

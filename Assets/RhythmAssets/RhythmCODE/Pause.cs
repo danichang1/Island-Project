@@ -16,9 +16,6 @@ public class Pause : MonoBehaviour
             pauseScreen.SetActive(true);
             Time.timeScale = 0;
             GameManager.instance.music.Pause();
-        } else{
-            Time.timeScale = 1;
-            GameManager.instance.music.Play();
-        }
+        } 
     }
 }

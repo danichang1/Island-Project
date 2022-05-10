@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public TextAsset beatmapFile;
     public GameObject note;
+    public GameObject hold;
     public GameObject parent;
 
     public int perfectCount;
@@ -47,9 +48,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < lines.Length; i++){
             var currentLine = lines[lines.Length - (i + 1)];
             for(int u = 0; u < 4; u++){
-                var why = "1";
-                if (currentLine[u] == why[0]){
-                    float xValue = 0f;
+                var why = "h1234";
+                float xValue = 0f;
                     if (u == 0){
                         xValue = -7.8f;
                     } else if (u == 1){
@@ -59,7 +59,28 @@ public class GameManager : MonoBehaviour
                     } else{
                         xValue = -1.8f;
                     }
+                if (currentLine[u] == why[0]){  
                     var currentNote = Instantiate(note, new Vector3(xValue, i + 9, -0.1f), note.transform.rotation);
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[1]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 1;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[2]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 2;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[3]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 3;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[4]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 4;
                     currentNote.transform.parent = parent.transform;
                 }
             }

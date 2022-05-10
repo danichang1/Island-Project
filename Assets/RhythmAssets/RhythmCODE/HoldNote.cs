@@ -70,6 +70,9 @@ public class HoldNote : MonoBehaviour
                     GameManager.instance.BadHit();
                     Instantiate(badEffect, particlePos, badEffect.transform.rotation);
                     gameObject.SetActive(false);
+                    GameManager.instance.NoteMiss();
+                    var badMiss = new Vector3(transform.position.x, transform.position.y + 0.5f, -5);
+                    Instantiate(missEffect, badMiss, missEffect.transform.rotation);
                     end.SetActive(false);
                 } else if (distance >= 0.5f){
                     GameManager.instance.GoodHit();
@@ -98,14 +101,18 @@ public class HoldNote : MonoBehaviour
             var releaseMiss = new Vector3(transform.position.x, transform.position.y, -5);
             GameManager.instance.NoteMiss();
             Instantiate(missEffect, releaseMiss, missEffect.transform.rotation);
-            holdDestroy.SetActive(false);
+            if (holdDestroy != null){
+                holdDestroy.SetActive(false);
+            }
             gameObject.SetActive(false);
             end.SetActive(false);
         }
 
         if(Input.GetKeyUp(keyToPress)){
             if (canBePressed){
-                Destroy(holdDestroy);
+                if (holdDestroy != null){
+                    holdDestroy.SetActive(false);
+                }
                 var releaseParticle = new Vector3(transform.position.x, transform.position.y, -5);
                 if (howfar >= 1.45f){
                     GameManager.instance.NoteMiss();
@@ -123,7 +130,6 @@ public class HoldNote : MonoBehaviour
                     GameManager.instance.PerfectHit();
                     Instantiate(perfectEffect, releaseParticle, perfectEffect.transform.rotation);
                 }
-                holdDestroy.SetActive(false);
                 gameObject.SetActive(false);
                 end.SetActive(false);
             }
@@ -142,6 +148,11 @@ public class HoldNote : MonoBehaviour
             GameManager.instance.NoteMiss();
             Vector3 missPosition = new Vector3(transform.position.x, 1f, transform.position.z);
             Instantiate(missEffect, missPosition, missEffect.transform.rotation);
+            gameObject.SetActive(false);
+            GameManager.instance.NoteMiss();
+            var doubleMiss = new Vector3(transform.position.x, 1.5f, transform.position.z);
+            Instantiate(missEffect, doubleMiss, missEffect.transform.rotation);
+            end.SetActive(false);
         }
     }
 }

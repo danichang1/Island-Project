@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour
         string text = beatmapFile.text;
         var lines = text.Split('\n');
         for(int i = 0; i < lines.Length; i++){
-            var currentLine = lines[lines.Length - (i + 1)];
+            var currentLine = lines[i];
             for(int u = 0; u < 4; u++){
-                var why = "h1234";
+                var why = "h123458e";
                 float xValue = 0f;
                     if (u == 0){
                         xValue = -7.8f;
@@ -60,27 +60,42 @@ public class GameManager : MonoBehaviour
                         xValue = -1.8f;
                     }
                 if (currentLine[u] == why[0]){  
-                    var currentNote = Instantiate(note, new Vector3(xValue, i + 9, -0.1f), note.transform.rotation);
+                    var currentNote = Instantiate(note, new Vector3(xValue, i + 1, -0.1f), note.transform.rotation);
                     currentNote.transform.parent = parent.transform;
                 } else if (currentLine[u] == why[1]){
-                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
-                    var head = currentNote.transform.GetChild(0).gameObject;
-                    head.GetComponent<HoldNote>().tailLength = 1;
-                    currentNote.transform.parent = parent.transform;
-                } else if (currentLine[u] == why[2]){
-                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
                     var head = currentNote.transform.GetChild(0).gameObject;
                     head.GetComponent<HoldNote>().tailLength = 2;
                     currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[2]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 4;
+                    currentNote.transform.parent = parent.transform;
                 } else if (currentLine[u] == why[3]){
-                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
                     var head = currentNote.transform.GetChild(0).gameObject;
                     head.GetComponent<HoldNote>().tailLength = 3;
                     currentNote.transform.parent = parent.transform;
                 } else if (currentLine[u] == why[4]){
-                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
                     var head = currentNote.transform.GetChild(0).gameObject;
-                    head.GetComponent<HoldNote>().tailLength = 4;
+                    head.GetComponent<HoldNote>().tailLength = 8;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[5]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 10;
+                    currentNote.transform.parent = parent.transform;
+                }else if (currentLine[u] == why[6]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 16;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[7]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 1, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 1;
                     currentNote.transform.parent = parent.transform;
                 }
             }

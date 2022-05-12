@@ -781,7 +781,7 @@ MonoBehaviour:
   badCount: 0
   missCount: 0
   startScreen: {fileID: 1297723615}
-  beatTempo: 100
+  beatTempo: 135
 --- !u!4 &753018318
 Transform:
   m_ObjectHideFlags: 0
@@ -823,9 +823,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbe04a38d253d1f42a8c394c4d9e3f69, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e9dbcae11e17b7a43aef8a1032aeb8e9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.43
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1446,7 +1446,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1006743355
 MeshRenderer:
@@ -1785,7 +1785,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1241506781
 MeshRenderer:
@@ -2074,7 +2074,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1523662517
 MeshRenderer:
@@ -2594,7 +2594,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &2017694454
 MeshRenderer:

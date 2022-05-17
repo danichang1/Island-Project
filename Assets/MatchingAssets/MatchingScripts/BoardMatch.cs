@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState{
+    wait,
+    move
+}
+
 public class BoardMatch : MonoBehaviour{
+    
+
+    public GameState CurSta = GameState.move;
 
     public int width;
     public int height;
@@ -15,8 +23,14 @@ public class BoardMatch : MonoBehaviour{
 
     public GameObject[] Rocks;
 
+    public int Offset;
+
+    private FindMatch FindMatches;
+
 
     void Start(){
+
+        FindMatches = FindObjectOfType<FindMatch>();
 
         allTiles = new float[width,height];
 
@@ -30,7 +44,7 @@ public class BoardMatch : MonoBehaviour{
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
 
-                Vector2 TempPos = new Vector2(i, j);
+                Vector2 TempPos = new Vector2(i, j + Offset);
 
                 GameObject BGTile = Instantiate(TilePrefab, TempPos, Quaternion.identity) as GameObject;
 
@@ -50,6 +64,9 @@ public class BoardMatch : MonoBehaviour{
                 MaxIt = 0;
 
                 GameObject Rock = Instantiate(Rocks[RockUse], TempPos, Quaternion.identity);
+
+                Rock.GetComponent<RockMatch>().Row = j;
+                Rock.GetComponent<RockMatch>().Column = i;
 
                 Rock.transform.parent = this.transform;
                 Rock.name = "(" + i + "," + j + ")";
@@ -86,6 +103,7 @@ public class BoardMatch : MonoBehaviour{
 
     private void DestroyMatchAt(int Column, int Row){
         if(AllRocks[Column, Row].GetComponent<RockMatch>().Matched){
+            FindMatches.CurMatches.Remove(AllRocks[Column, Row]);
             Destroy(AllRocks[Column, Row]);
             AllRocks[Column, Row] = null;
         }
@@ -130,10 +148,13 @@ public class BoardMatch : MonoBehaviour{
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height ; j++){
                 if(AllRocks[i, j] == null){
-                    Vector2 TempPos = new Vector2(i,j);
+                    Vector2 TempPos = new Vector2(i, j + Offset);
                     int RockUse = Random.Range(0, Rocks.Length);
                     GameObject Piece = Instantiate(Rocks[RockUse], TempPos, Quaternion.identity);
                     AllRocks[i,j] = Piece;
+
+                    Piece.GetComponent<RockMatch>().Row = j;
+                    Piece.GetComponent<RockMatch>().Column = i;
                 }
             }
         }
@@ -157,11 +178,15 @@ bool MatchesOnBoard(){
     private IEnumerator FillBoardCo(){
         RefillBoard();
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.2f);
 
         while(MatchesOnBoard()){
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.2f);
             DestroyMatch();
         }
+
+        yield return new WaitForSeconds(.2f);
+
+        CurSta = GameState.move;
     }
 }

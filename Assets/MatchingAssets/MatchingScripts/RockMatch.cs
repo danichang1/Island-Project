@@ -16,6 +16,8 @@ public class RockMatch : MonoBehaviour
 
     private GameObject OtherRock;
 
+    private FindMatch FindMatches;
+
     private BoardMatch board;
 
     public int TargetX;
@@ -35,14 +37,16 @@ public class RockMatch : MonoBehaviour
     void Start(){
         board = FindObjectOfType<BoardMatch>();
 
-        TargetX = (int)transform.position.x;
-        TargetY = (int)transform.position.y;
+        FindMatches = FindObjectOfType<FindMatch>();
 
-        Row = TargetY;
-        Column = TargetX;
+        //TargetX = (int)transform.position.x;
+        //TargetY = (int)transform.position.y;
 
-        PreviousColumn = Column;
-        PreviousRow = Row;
+        //Row = TargetY;
+        //Column = TargetX;
+
+        //PreviousColumn = Column;
+        //PreviousRow = Row;
     }
 
     void Update(){
@@ -51,7 +55,7 @@ public class RockMatch : MonoBehaviour
 
         //Match
 
-        FindMatch();
+        //FindMatch();
 
         if(Matched){
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
@@ -71,6 +75,8 @@ public class RockMatch : MonoBehaviour
                 board.AllRocks[Column, Row] = this.gameObject;
             }
 
+            FindMatches.FindAllMatch();
+
         } else {
             //Directly set pos
 
@@ -88,6 +94,8 @@ public class RockMatch : MonoBehaviour
             if(board.AllRocks[Column, Row] != this.gameObject){
                 board.AllRocks[Column, Row] = this.gameObject;
             }
+
+            FindMatches.FindAllMatch();
 
         } else {
             //Directly set pos
@@ -107,7 +115,12 @@ public class RockMatch : MonoBehaviour
                 Row = PreviousRow;
                 Column = PreviousColumn;
 
+                yield return new WaitForSeconds(.25f);
+
+                board.CurSta = GameState.move;
+
             }else{
+
             board.DestroyMatch();
         }
             OtherRock = null;
@@ -117,7 +130,11 @@ public class RockMatch : MonoBehaviour
 
 
     void OnMouseDown(){
-        FirstPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if(board.CurSta == GameState.move){
+            FirstPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        
     }
 
     void OnMouseUp(){
@@ -132,7 +149,12 @@ public class RockMatch : MonoBehaviour
              SwipeAngle = Mathf.Atan2(FinalPos.y - FirstPos.y, FinalPos.x - FirstPos.x) * 180/Mathf.PI;
 
             MovePieces();
+
+            board.CurSta = GameState.wait;
+        }else {
+            board.CurSta = GameState.move;
         }
+
 
     }
 
@@ -141,11 +163,17 @@ public class RockMatch : MonoBehaviour
             //Right
             OtherRock = board.AllRocks[Column + 1, Row];
 
+            PreviousColumn = Column;
+            PreviousRow = Row;
+
             OtherRock.GetComponent<RockMatch>().Column -= 1;
             Column += 1;
         } else if(SwipeAngle > 45 && SwipeAngle <= 135 && Row < board.height - 1){
             //Up
             OtherRock = board.AllRocks[Column, Row + 1];
+
+            PreviousColumn = Column;
+            PreviousRow = Row;
 
             OtherRock.GetComponent<RockMatch>().Row -= 1;
             Row += 1;
@@ -153,11 +181,17 @@ public class RockMatch : MonoBehaviour
             //Left
             OtherRock = board.AllRocks[Column - 1, Row];
 
+            PreviousColumn = Column;
+            PreviousRow = Row;
+
             OtherRock.GetComponent<RockMatch>().Column += 1;
             Column -= 1;
         } else if(SwipeAngle < -45 && SwipeAngle >= -135 && Row > 0){
             //Down
             OtherRock = board.AllRocks[Column, Row - 1];
+
+            PreviousColumn = Column;
+            PreviousRow = Row;
 
             OtherRock.GetComponent<RockMatch>().Row += 1;
             Row -= 1;

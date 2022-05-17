@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    public Material myMaterial;
     public Material notPressed;
     public Material pressed;
 

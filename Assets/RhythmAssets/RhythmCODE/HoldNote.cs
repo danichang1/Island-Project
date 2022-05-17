@@ -102,19 +102,19 @@ public class HoldNote : MonoBehaviour
             GameManager.instance.NoteMiss();
             Instantiate(missEffect, releaseMiss, missEffect.transform.rotation);
             if (holdDestroy != null){
-                holdDestroy.SetActive(false);
+                Destroy(holdDestroy);
             }
             gameObject.SetActive(false);
             end.SetActive(false);
         }
 
-        if(Input.GetKeyUp(keyToPress)){
+        if(Input.GetKeyUp(keyToPress) && beingHeld == true){
             if (canBePressed){
                 if (holdDestroy != null){
-                    holdDestroy.SetActive(false);
+                    Destroy(holdDestroy);
                 }
                 var releaseParticle = new Vector3(transform.position.x, transform.position.y, -5);
-                if (howfar >= 1.45f){
+                if (howfar >= 1f){
                     GameManager.instance.NoteMiss();
                     Instantiate(missEffect, releaseParticle, missEffect.transform.rotation);
                 } else if (howfar >= 0.8f){

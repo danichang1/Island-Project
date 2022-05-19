@@ -58,8 +58,8 @@ public class RockMatch : MonoBehaviour
         //FindMatch();
 
         if(Matched){
-            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color(0f, 0f, 0f, .2f);
+            //SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+            //mySprite.color = new Color(0f, 0f, 0f, .2f);
 
         }
 

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject note;
     public GameObject hold;
     public GameObject parent;
+    public GameObject end;
 
     public int perfectCount;
     public int greatCount;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < lines.Length; i++){
             var currentLine = lines[i];
             for(int u = 0; u < 4; u++){
-                var why = "h123458e7";
+                var why = "h123458e7lx";
                 float xValue = 0f;
                     if (u == 0){
                         xValue = -7.8f;
@@ -100,9 +101,16 @@ public class GameManager : MonoBehaviour
                 } else if (currentLine[u] == why[8]){
                     var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
                     var head = currentNote.transform.GetChild(0).gameObject;
-                    head.GetComponent<HoldNote>().tailLength = 7;
+                    head.GetComponent<HoldNote>().tailLength = 5;
                     currentNote.transform.parent = parent.transform;
-                }
+                } else if (currentLine[u] == why[9]){
+                    var currentNote = Instantiate(hold, new Vector3(xValue, i + 9, -0.1f), hold.transform.rotation);
+                    var head = currentNote.transform.GetChild(0).gameObject;
+                    head.GetComponent<HoldNote>().tailLength = 32;
+                    currentNote.transform.parent = parent.transform;
+                } else if (currentLine[u] == why[10]){
+                    end.transform.position = new Vector3(xValue, i + 0, -0.1f);
+                } 
             }
         }
     }

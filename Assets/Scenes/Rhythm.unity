@@ -765,16 +765,17 @@ MonoBehaviour:
   startMusic: 0
   theBS: {fileID: 1540066775}
   currentCombo: 0
-  scorePerfect: 50
-  scoreGreat: 40
-  scoreGood: 25
-  scoreBad: 30
-  scoreMiss: 40
+  scorePerfect: 4
+  scoreGreat: 3
+  scoreGood: 2
+  scoreBad: 3
+  scoreMiss: 4
   comboText: {fileID: 1267035603}
   beatmapFile: {fileID: 4900000, guid: 0c758191d06b18340a87c2556b9ae95a, type: 3}
   note: {fileID: 5751621045499987909, guid: deef5f89f98cbbb4db7831432cc63f35, type: 3}
   hold: {fileID: 4909919445471724769, guid: ef2093e0515dff04194e90fc1c01b9c3, type: 3}
   parent: {fileID: 1540066773}
+  end: {fileID: 1599855468}
   perfectCount: 0
   greatCount: 0
   goodCount: 0
@@ -1446,7 +1447,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 1, y: 1, z: 2.5}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1006743355
 MeshRenderer:
@@ -1523,7 +1524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fd9099a23728440b13919386d76b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaterial: {fileID: 0}
   notPressed: {fileID: 2100000, guid: 79233ab2edd13b342830eedfc6b4da83, type: 2}
   pressed: {fileID: 2100000, guid: 2178a504507ffb24cae34ab89c499395, type: 2}
   keyToPress: 106
@@ -1785,7 +1785,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 1, y: 1, z: 2.5}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1241506781
 MeshRenderer:
@@ -1862,7 +1862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fd9099a23728440b13919386d76b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaterial: {fileID: 0}
   notPressed: {fileID: 2100000, guid: 79233ab2edd13b342830eedfc6b4da83, type: 2}
   pressed: {fileID: 2100000, guid: 2178a504507ffb24cae34ab89c499395, type: 2}
   keyToPress: 107
@@ -2074,7 +2073,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 1, y: 1, z: 2.5}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &1523662517
 MeshRenderer:
@@ -2151,7 +2150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fd9099a23728440b13919386d76b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaterial: {fileID: 0}
   notPressed: {fileID: 2100000, guid: 79233ab2edd13b342830eedfc6b4da83, type: 2}
   pressed: {fileID: 2100000, guid: 2178a504507ffb24cae34ab89c499395, type: 2}
   keyToPress: 102
@@ -2182,7 +2180,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1599855469}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2199,6 +2198,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasStarted: 0
+--- !u!1 &1599855468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599855469}
+  - component: {fileID: 1599855472}
+  - component: {fileID: 1599855471}
+  - component: {fileID: 1599855470}
+  - component: {fileID: 1599855473}
+  m_Layer: 0
+  m_Name: SongEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599855469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599855468}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.8, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 0.3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1540066774}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!54 &1599855470
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599855468}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &1599855471
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599855468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!33 &1599855472
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599855468}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1599855473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599855468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46243721c7ad8e4ba3f6f13e64c0618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1680169130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2677,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 1, y: 1, z: 2.5}
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940699}
 --- !u!23 &2017694454
 MeshRenderer:
@@ -2671,7 +2754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fd9099a23728440b13919386d76b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaterial: {fileID: 0}
   notPressed: {fileID: 2100000, guid: 79233ab2edd13b342830eedfc6b4da83, type: 2}
   pressed: {fileID: 2100000, guid: 2178a504507ffb24cae34ab89c499395, type: 2}
   keyToPress: 100

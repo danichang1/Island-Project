@@ -114,7 +114,7 @@ public class HoldNote : MonoBehaviour
                     Destroy(holdDestroy);
                 }
                 var releaseParticle = new Vector3(transform.position.x, transform.position.y, -5);
-                if (howfar >= 1f){
+                if (howfar >= 1.25f){
                     GameManager.instance.NoteMiss();
                     Instantiate(missEffect, releaseParticle, missEffect.transform.rotation);
                 } else if (howfar >= 0.8f){

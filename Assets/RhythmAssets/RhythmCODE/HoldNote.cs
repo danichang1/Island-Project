@@ -91,7 +91,7 @@ public class HoldNote : MonoBehaviour
             }
         }
 
-        var howfar = Mathf.Abs(end.transform.position.y - 1);
+        var howfar = Mathf.Abs(end.transform.position.y - stay.y);
 
         if (howfar <= 0.2f){
             end.GetComponent<MeshRenderer>().enabled = false;

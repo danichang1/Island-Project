@@ -36,10 +36,18 @@ public class GameManager : MonoBehaviour
     public GameObject startScreen;
 
     public float beatTempo;
+
+    public GameObject endScreen, fullCombo, endClear, endFail;
+    public TextMesh perfectText, greatText, goodText, badText, missText;
+
     
 
     void Start()
     {
+        endScreen.SetActive(false);
+        fullCombo.SetActive(false);
+        endClear.SetActive(false);
+        endFail.SetActive(false);
         instance = this;
         startScreen.SetActive(true);
 
@@ -168,5 +176,21 @@ public class GameManager : MonoBehaviour
         currentScore -= scoreMiss;
         currentCombo = 0;
         ScoreSet();
+    }
+
+    public void endGame(){
+        perfectText.text = "" + perfectCount;
+        greatText.text = "" + greatCount;
+        goodText.text = "" + goodCount;
+        badText.text = "" + badCount;
+        missText.text = "" + missCount;
+        endScreen.SetActive(true);
+        if (currentCombo == 317){
+            fullCombo.SetActive(true);
+        } else if (currentScore >= 450){
+            endClear.SetActive(true);
+        } else{
+            endFail.SetActive(true);
+        }
     }
 }

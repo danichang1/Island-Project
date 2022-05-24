@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a1bcb9fb5a3821844a3ea16ba8b10efe, type: 3}
-  m_Color: {r: 0.9056604, g: 0.4666154, b: 0, a: 1}
+  m_Color: {r: 0.4811321, g: 0.25555843, b: 0.015886446, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   TargetX: 0
   TargetY: 0
   Matched: 0
+  Counted: 0
   PreviousColumn: 0
   PreviousRow: 0
   SwipeResist: 1

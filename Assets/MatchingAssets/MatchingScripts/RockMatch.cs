@@ -27,6 +27,8 @@ public class RockMatch : MonoBehaviour
 
     public bool Matched = false;
 
+    public bool Counted = false;
+
     public int PreviousColumn;
     public int PreviousRow;
 
@@ -50,6 +52,12 @@ public class RockMatch : MonoBehaviour
     }
 
     void Update(){
+
+        if(Matched && !Counted){
+            board.TotalMatch++;
+
+            Counted = true;
+        }
         TargetX = Column;
         TargetY = Row;
 

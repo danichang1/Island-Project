@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GameState{
     wait,
@@ -8,7 +9,10 @@ public enum GameState{
 }
 
 public class BoardMatch : MonoBehaviour{
+
+    public TextMeshProUGUI Score;
     
+    public int TotalMatch;
 
     public GameState CurSta = GameState.move;
 
@@ -27,6 +31,10 @@ public class BoardMatch : MonoBehaviour{
 
     private FindMatch FindMatches;
 
+    void Update(){
+        Score.text = "You have mined " + TotalMatch + "/100 crystals";
+    }
+
 
     void Start(){
 
@@ -44,7 +52,7 @@ public class BoardMatch : MonoBehaviour{
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
 
-                Vector2 TempPos = new Vector2(i, j + Offset);
+                Vector2 TempPos = new Vector2(i, j);
 
                 GameObject BGTile = Instantiate(TilePrefab, TempPos, Quaternion.identity) as GameObject;
 

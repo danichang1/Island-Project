@@ -10,7 +10,7 @@ public enum GameState{
 
 public class BoardMatch : MonoBehaviour{
 
-    public TextMeshProUGUI Score;
+    public TextMeshProUGUI ScoreTxt;
     
     public int TotalMatch;
 
@@ -32,7 +32,11 @@ public class BoardMatch : MonoBehaviour{
     private FindMatch FindMatches;
 
     void Update(){
-        Score.text = "You have mined " + TotalMatch + "/100 crystals";
+        ScoreTxt.text = "You have mined " + TotalMatch + "/100 crystals";
+
+        if(TotalMatch >= 100){
+            Win();
+        }
     }
 
 
@@ -46,6 +50,10 @@ public class BoardMatch : MonoBehaviour{
 
         Setup();
         
+    }
+
+    private void Win(){
+
     }
 
     private void Setup(){

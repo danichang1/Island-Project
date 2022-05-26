@@ -11,7 +11,6 @@ public class SongEnd : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other){
         if(other.tag == "Activator" && endShow == false){
-            Debug.Log("END");
             GameManager.instance.endGame();
         }
     }

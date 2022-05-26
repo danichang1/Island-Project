@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
         badText.text = "" + badCount;
         missText.text = "" + missCount;
         endScreen.SetActive(true);
-        if (currentCombo == 317){
+        if (currentCombo == 315){
             fullCombo.SetActive(true);
         } else if (currentScore >= 450){
             endClear.SetActive(true);

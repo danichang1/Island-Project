@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5751621045499987914}
   - component: {fileID: 5751621045499987913}
   - component: {fileID: 5751621045499987912}
-  - component: {fileID: -35314994129328952}
   - component: {fileID: -2005407004633673332}
   - component: {fileID: 7473053671252703642}
   - component: {fileID: -8216762208682193339}
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-35314994129328952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751621045499987909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5aee46d46bca4745bec64e19c824518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beatTempo: 140
-  hasStarted: 0
 --- !u!114 &-2005407004633673332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 0
+  perfectEffect: {fileID: 5148024515965496851, guid: bb1f89dbbb5abf342a1883f7d6cee465, type: 3}
+  greatEffect: {fileID: 6223738804041440606, guid: 6e756fb756eabf746b098285804d38d8, type: 3}
+  goodEffect: {fileID: 7881964452828664943, guid: 2ebd05e0f0fd8f443b3ddbd938ee9e8d, type: 3}
+  badEffect: {fileID: 7371137111742578135, guid: 1cd6195c360d7064295ad07c3c5425dc, type: 3}
+  missEffect: {fileID: 2599879117284125934, guid: 76a593ee8c15cca43964b8ea2958ceda, type: 3}
 --- !u!54 &7473053671252703642
 Rigidbody:
   m_ObjectHideFlags: 0

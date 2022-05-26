@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+  - Circle
+  - Diamond
+  - Heart
+  - Square
+  - Star
+  - Triangle
   layers:
   - Default
   - TransparentFX

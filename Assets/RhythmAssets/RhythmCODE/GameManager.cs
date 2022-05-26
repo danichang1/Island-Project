@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public float beatTempo;
 
-    public GameObject endScreen, fullCombo, endClear, endFail;
+    public GameObject endScreen, fullCombo, endClear, endFail, endFish;
     public TextMesh perfectText, greatText, goodText, badText, missText;
 
     
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         fullCombo.SetActive(false);
         endClear.SetActive(false);
         endFail.SetActive(false);
+        endFish.SetActive(false);
         instance = this;
         startScreen.SetActive(true);
 
@@ -187,8 +188,10 @@ public class GameManager : MonoBehaviour
         endScreen.SetActive(true);
         if (currentCombo == 315){
             fullCombo.SetActive(true);
+            endFish.SetActive(true);
         } else if (currentScore >= 450){
             endClear.SetActive(true);
+            endFish.SetActive(true);
         } else{
             endFail.SetActive(true);
         }

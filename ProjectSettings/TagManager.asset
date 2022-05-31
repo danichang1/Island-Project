@@ -5,12 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+<<<<<<< Updated upstream
   - Circle
   - Diamond
   - Heart
   - Square
   - Star
   - Triangle
+=======
+  - BeastInteract
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -22,7 +26,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - whatIsGround
   - 
   - 
   - 

@@ -22,7 +22,7 @@ public class CollisionDetector : MonoBehaviour
     {
         if(other.gameObject.CompareTag("BeastInteract"))
         {
-            playerCam.enabled(false);
+            //playerCam.enabled(false);
 
 
         }

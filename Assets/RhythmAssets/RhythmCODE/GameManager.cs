@@ -189,9 +189,11 @@ public class GameManager : MonoBehaviour
         if (currentCombo == 315){
             fullCombo.SetActive(true);
             endFish.SetActive(true);
+            GemChecks.hasFish = true;
         } else if (currentScore >= 450){
             endClear.SetActive(true);
             endFish.SetActive(true);
+            GemChecks.hasFish = true;
         } else{
             endFail.SetActive(true);
         }

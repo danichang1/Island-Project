@@ -80,14 +80,15 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer() {
         //calc movement direction
+
         moveDirection =  orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         //on ground
-        if(grounded) {
+        if(grounded && CollisionDetector.inBeastScene == false) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         } 
         //in air
-        else if(!grounded) {
+        else if(!grounded && CollisionDetector.inBeastScene == false) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
     }
@@ -108,7 +109,11 @@ public class PlayerMovement : MonoBehaviour
         //reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        if (CollisionDetector.inBeastScene == false){
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+        
     }
     void ResetJump() {
         readyToJump = true;

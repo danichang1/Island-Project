@@ -72,7 +72,14 @@ public class CollisionDetector : MonoBehaviour
 
         } else if (other.gameObject.CompareTag("ClimbingInteract")) {
             SceneManager.LoadScene("Platformer", LoadSceneMode.Single);
-        } else if (other.gameObject.CompareTag("FishingInteract"))
-            SceneManager.LoadScene("Rhythm", LoadSceneMode.Additive);
+        } else if (other.gameObject.CompareTag("FishingInteract")) {
+            SceneManager.LoadScene("Rhythm", LoadSceneMode.Single);
+        } else if (other.gameObject.CompareTag("MiningInteract")){
+            SceneManager.LoadScene("Matching", LoadSceneMode.Single);
+            this.GetComponent<PlayerMovement>().enabled = false;
+            this.GetComponent<PlayerCam>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }

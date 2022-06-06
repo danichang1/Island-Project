@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Platformer.unity
     guid: d84dc58785be56041a0f2579c046bec9
+  - enabled: 1
+    path: Assets/Scenes/Rhythm.unity
+    guid: a367af2d0dc7696409c0ee603ee49ff4
+  - enabled: 1
+    path: Assets/Scenes/Matching.unity
+    guid: 89ab1d1071a54ad49a6ea0411a5ed11c
   m_configObjects: {}

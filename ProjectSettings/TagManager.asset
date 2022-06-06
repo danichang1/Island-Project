@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BeastInteract
   - ClimbingInteract
+  - FishingInteract
+  - MiningInteract
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - WhatIsGround
   - 
   - 
   - 
